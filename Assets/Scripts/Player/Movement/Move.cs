@@ -18,4 +18,9 @@ public class Move : MonoBehaviour
         if (Input.GetKey(KeyCode.D)) transform.position = new Vector3(currentX + moveSpeed, currentY, currentZ);
         else if(Input.GetKey(KeyCode.A)) transform.position = new Vector3(currentX - moveSpeed, currentY, currentZ);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log($"Collision with {collision.gameObject.name}");
+    }
 }
