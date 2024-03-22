@@ -3,6 +3,7 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    private float defaultSpeed = 0.1f;
 
     private void Update()
     {
@@ -19,8 +20,13 @@ public class Move : MonoBehaviour
         else if(Input.GetKey(KeyCode.A)) transform.position = new Vector3(currentX - moveSpeed, currentY, currentZ);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    public void ChangeSpeed(float speed)
     {
-        Debug.Log($"Collision with {collision.gameObject.name}");
+        if (speed >= 0 && speed <= 10) moveSpeed = speed;
+        else
+        {
+            moveSpeed = defaultSpeed;
+            Debug.Log($"Don`t correct speed. Speed will be default value = 0.1f.");
+        }
     }
 }
